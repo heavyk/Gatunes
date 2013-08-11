@@ -1818,7 +1818,8 @@ $(window).load(function() {
 			DATA.albums.getAll(function(albums) {
 				var menu = $('aside menu').last(),
 					selected = $('section .header h1').attr("key"),
-					h = menu.css('height');
+					h = menu.css('height'),
+					scroll = menu[0].scrollTop;
 
 				menu.replaceWith(Handlebars.partials.playlistsMenu({playlists : playlists, albums: albums}));
 				menu = $('aside menu').last();
@@ -1892,6 +1893,7 @@ $(window).load(function() {
 					menu.prev()[(menu.scrollTop() > 0 ? 'add' : 'remove') + 'Class']('s');
 				});
 				LIB.handleLinks('aside menu');
+				menu[0].scrollTop = scroll;
 				if(selected) {
 					$('aside menu li').removeClass('selected');
 					$('aside menu li[key="' + selected + '"]').addClass('selected');
