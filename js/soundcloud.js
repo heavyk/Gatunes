@@ -27,7 +27,7 @@ SC = {
 					ids : SC.artworks_req.join(',')
 				},
 				cbs = SC.artworks_req_callbacks;
-			
+
 			$.get('//api.soundcloud.com/tracks.json', params, function(data) {
 				data.forEach(function(t) {
 					if(t.artwork_url || (t.user.avatar_url && t.user.avatar_url.indexOf('default_avatar_large.png') === -1)) {
@@ -35,7 +35,7 @@ SC = {
 						$('img.scart' + t.id, 'section, div.modal.replace').attr('src', SC.artworks[t.id].replace(/crop.jpg/, 'large.jpg'));
 					} else SC.artworks_err[t.id] = true;
 				});
-				
+
 				for(i in cbs) cbs[i]();
 			}, 'json');
 

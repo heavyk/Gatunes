@@ -7,7 +7,7 @@ DANIPLAYA = {
 	player : function(song) {
 		PLAYER.onStateChange(3);
 		$('body').append('<div id="daniPlaya_swf" />');
-		var url = 'http://' + window.location.host + '/media' + song.localMatch;
+		var url = 'http://' + window.location.host + '/media' + song.localMatch.replace(/\+/g, '%2B');
 		swfobject.embedSWF(
 			'/swf/daniPlaya.swf',
 			'daniPlaya_swf',
